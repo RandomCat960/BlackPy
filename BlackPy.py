@@ -12,17 +12,21 @@ print("██████╗ ██╗      █████╗  █████�
       "╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝        ╚═╝   \n"
       "                                                         ")
 
-time.sleep(1)
+time.sleep(0.5)
 print("[*] Starting The BlackPy Framework...")
 time.sleep(5)
 print("[*] Loading Modules...")
 time.sleep(1.5)
 print("[+] Success!")
+print("""Available Commands:
+=========================================================================
+[>] Scan: Scans Specified Target IP Address And Ports
+[>] Help: Displays The Help Menu
+[>] Exit: Exits BlackPy""")
 
 
 while True: 
     user_input = input("BlackPy> ").strip()
-
     args=user_input.split()
     if not args:
         continue
@@ -35,9 +39,9 @@ while True:
 
     elif command == "help":
         print("===Available Commands===")
-        print("[>} scan: {Target-IP} {Ports}: Scans The Specified Target IP Address And Ports")
-        print("[>} help: Displays This Help Menu")
-        print("[>} exit: Exits BlackPy")
+        print("[>] scan: {Target-IP} {Ports}: Scans The Specified Target IP Address And Ports")
+        print("[>] help: Displays This Help Menu")
+        print("[>] exit: Exits BlackPy")
     elif command == "scan":
         if len(args) < 2:
              print("[+] Usage: scan {Target-IP} [Optional{Port(s)}")
