@@ -1,6 +1,7 @@
 import time
 import nmap
 from scan import run_nmap
+from ping import ping_host
 
 
 time.sleep(0.5)
@@ -18,9 +19,10 @@ time.sleep(5)
 print("[*] Loading Modules...")
 time.sleep(1.5)
 print("[+] Success!")
-print("""Available Commands:
+print("""Available Commands
 =========================================================================
 [>] Scan: Scans Specified Target IP Address And Ports
+[>] Ping: Pings Specified Target Host
 [>] Help: Displays The Help Menu
 [>] Exit: Exits BlackPy""")
 
@@ -40,17 +42,26 @@ while True:
     elif command == "help":
         print("===Available Commands===")
         print("[>] scan: {Target-IP} {Ports}: Scans The Specified Target IP Address And Ports")
+        print("[>] ping: {Target-Host}: Pings The Specified Target Host")
         print("[>] help: Displays This Help Menu")
         print("[>] exit: Exits BlackPy")
     elif command == "scan":
         if len(args) < 2:
              print("[+] Usage: scan {Target-IP} [Optional{Port(s)}")
              print("[+] Example: scan 192.168.1.1 80,443")
+    elif command =="ping":
+        if len(args) < 2:
+            print("[+] Usage: ping {Target-Host}")
+            print("[+] Example: ping google.com OR 8.8.8.8")
         else:
+            target = args[1]
+            count = args[2] if len(args) > 2 else 4
+            ping_host(target, count=count)
+    else:
             target_ip = args[1]
             ports_to_scan = args[2] if len(args) > 2 else "1-1024"
             run_nmap(target_ip, ports=ports_to_scan)
-    else:
+else:
         print(f"[-] Unknown Command: {command}. Type 'help' for a list of available commands.")
 
 
